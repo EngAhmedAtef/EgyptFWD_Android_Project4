@@ -340,7 +340,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
      * Checks the state of the location service of the device.
      * If disabled it shows a request to the user to enable it if he wishes to enable his location on the map.
      */
-    fun checkDeviceLocationSettings(resolve: Boolean = true) {
+    private fun checkDeviceLocationSettings(resolve: Boolean = true) {
         val locationRequest =
             LocationRequest.create().setPriority(Priority.PRIORITY_BALANCED_POWER_ACCURACY)
         val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)

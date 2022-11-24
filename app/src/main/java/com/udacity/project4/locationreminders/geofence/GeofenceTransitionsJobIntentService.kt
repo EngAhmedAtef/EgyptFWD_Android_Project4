@@ -28,8 +28,8 @@ class GeofenceTransitionsJobIntentService : JobIntentService(), CoroutineScope {
     companion object {
         private const val JOB_ID = 573
 
-        //  TODO: call this to start the JobIntentService to handle the geofencing transition events
         fun enqueueWork(context: Context, intent: Intent) {
+            println("GEOFENCE - Called enqueueWork")
             enqueueWork(
                 context,
                 GeofenceTransitionsJobIntentService::class.java, JOB_ID,
@@ -39,20 +39,23 @@ class GeofenceTransitionsJobIntentService : JobIntentService(), CoroutineScope {
     }
 
     override fun onHandleWork(intent: Intent) {
+        println("GEOFENCE - Called onHandleWork")
         val geofencingEvent = GeofencingEvent.fromIntent(intent)
 
         if (geofencingEvent?.hasError() == true) {
+            println("GEOFENCE - There was an error")
             Log.d(TAG, geofencingEvent.errorCode.toString())
             return
         }
 
         if (geofencingEvent?.geofenceTransition == Geofence.GEOFENCE_TRANSITION_ENTER) {
+            println("GEOFENCE - If condition is true")
             sendNotification(geofencingEvent.triggeringGeofences!!)
-        }
+       }
     }
 
     private fun sendNotification(triggeringGeofences: List<Geofence>) {
-        Log.i(TAG, "Calling sendNotification")
+        println("GEOFENCE - Called sendNotification")
         // Get the local repository instance
         val remindersLocalRepository: ReminderDataSource by inject()
 
