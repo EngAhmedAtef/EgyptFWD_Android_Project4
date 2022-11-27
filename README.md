@@ -14,7 +14,7 @@ All necessary permissions were handled in addition to checking the location sett
 
 ## Geofence
 After successfully entering all the data the user can save the reminder. Upon saving, a geofence is created with a PendingIntent that is sent to a JobIntentService.
-Whenever the user triggers the geonce by for example entering a location previously saved a notification will be sent to the user.
+Whenever the user triggers the geofence by, for example, entering a location previously saved, a notification will be sent to the user.
 
 ## Testing
 Wrote tests for the whole application; ViewModels, Coroutines, LiveData, Repository, DAO and Database.
